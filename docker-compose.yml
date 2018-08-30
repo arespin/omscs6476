@@ -1,0 +1,34 @@
+version: '3.2'
+
+services:
+
+  shell:
+    image: cv_all_image
+    working_dir: /home/pset
+    command: bash
+    volumes:
+    - type: "bind"
+      source: ./
+      target: /home/pset
+
+ 
+
+  python:
+    image: cv_all_image
+    working_dir: /home/pset
+    command: python
+    volumes:
+    - type: "bind"
+      source: ./
+      target: /home/pset
+
+ 
+
+  ps00:
+    image: cv_all_image
+    working_dir: /home/pset
+    command: ["python", "ps0.py"]
+    volumes:
+    - type: "bind"
+      source: ./ps00
+      target: /home/pset
