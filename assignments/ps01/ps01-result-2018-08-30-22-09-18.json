@@ -1,0 +1,89 @@
+{
+    "tests": [
+        {
+            "output": {
+                "passfail": "failed"
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_typvinqh/CVResult.py\", line 29, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 285, in test_addnoise\n    student = ps1.add_noise(np.copy(test_image), channel, input_stddev)\n  File \"/home/vmuser_typvinqh/workspace/ps1.py\", line 275, in add_noise\n    noise=np.random.randn( temp_image.shape )*sigma\n  File \"mtrand.pyx\", line 1404, in mtrand.RandomState.randn (numpy/random/mtrand/mtrand.c:19843)\n  File \"mtrand.pyx\", line 1534, in mtrand.RandomState.standard_normal (numpy/random/mtrand/mtrand.c:20368)\n  File \"mtrand.pyx\", line 167, in mtrand.cont0_array (numpy/random/mtrand/mtrand.c:6127)\nTypeError: 'tuple' object cannot be interpreted as an index\n",
+            "description": "Test for add_noise (10 points)"
+        },
+        {
+            "output": {
+                "passfail": "failed"
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_typvinqh/CVResult.py\", line 29, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 274, in test_differenceimage\n    \"Correct answer: \\n{}\".format(student, ref))\nAssertionError: The difference at one pixel value was unexpectedly large. Make sure you subtract the shifted image from the original and not the other way around. Additionally, the pixel values should be normalized and scaled using a min max method so they are in [0, 255]. Finally, make sure you pay special attention to which data type you use when performing arithmetic operations.\nStudent's answer: \n[[141 232  95  96 226 214 138  97  65  74  89 209 213 138]\n [179  47  76 174 130 131 170 190 180 156 139  53  31 138]\n [122 121  79  70 175 132 198 205  84  62  88 188 190 138]\n [222 153 189 108  16 155 129 165 165 126 182  67 108 138]\n [235 150  87  96 135 142  99 201 204  34 159 137  39 138]\n [ 59  80 190 121  44 149 215 117 167 207  88 174 190 138]\n [107 240 140  34 169 220 109  95 215 180 140 150 145 138]\n [127   0  28 189 153 188 140  92 178 155 186 114  69 138]\n [138  99 145 127 178 134 113 218 130 143 255  75  47 138]\n [179 235 129 116 103 170 214 147 144  47 105 237 177 138]]\nCorrect answer: \n[[ 141.23076923  232.02197802   95.83516484   96.95604396  226.41758242\n   214.08791209  138.98901099   97.51648352   65.57142857   74.53846154\n    89.10989011  209.6043956   213.52747253  138.42857143]\n [ 179.9010989    47.63736264   76.21978022  174.85714286  130.58241758\n   131.14285714  170.93406593  190.54945055  180.46153846  156.36263736\n   139.54945055   53.8021978    31.38461538  138.42857143]\n [ 122.73626374  121.61538462   79.58241758   70.61538462  175.41758242\n   132.26373626  198.95604396  205.12087912   84.62637363   62.20879121\n    88.54945055  188.86813187  190.54945055  138.42857143]\n [ 222.49450549  153.56043956  189.98901099  108.16483516   16.25274725\n   155.8021978   129.46153846  165.32967033  165.32967033  126.0989011\n   182.14285714   67.25274725  108.72527473  138.42857143]\n [ 235.38461538  150.75824176   87.98901099   96.3956044   135.06593407\n   142.91208791   99.1978022   201.75824176  204.           34.74725275\n   159.16483516  137.86813187   39.23076923  138.42857143]\n [  59.96703297   80.7032967   190.54945055  121.05494505   44.27472527\n   149.07692308  215.76923077  117.69230769  167.57142857  207.36263736\n    88.54945055  174.85714286  190.54945055  138.42857143]\n [ 107.6043956   240.42857143  140.67032967   34.18681319  169.81318681\n   220.81318681  109.84615385   95.83516484  215.20879121  180.46153846\n   140.67032967  150.75824176  145.71428571  138.42857143]\n [ 127.78021978    0.           28.02197802  189.42857143  153.56043956\n   188.30769231  140.10989011   92.47252747  178.21978022  155.24175824\n   186.62637363  114.89010989   69.49450549  138.42857143]\n [ 138.42857143   99.75824176  145.15384615  127.78021978  178.78021978\n   134.50549451  113.76923077  218.01098901  130.02197802  143.47252747\n   255.           75.0989011    47.07692308  138.42857143]\n [ 179.34065934  235.38461538  129.46153846  116.01098901  103.68131868\n   170.37362637  214.08791209  147.3956044   144.03296703   47.63736264\n   105.92307692  237.06593407  177.0989011   138.42857143]]\n",
+            "description": "Test for difference Image (10 points)"
+        },
+        {
+            "output": {
+                "passfail": "failed"
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_typvinqh/CVResult.py\", line 29, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 220, in test_normalized\n    \"array has a stddev value of {}\".format(scale, stddev))\nAssertionError: The difference in at least one pixel value was unexpectedly large. \nMake sure your function can work with 'scale' values different than 10. This test used a 'scale' value of 6. The output array must have a standard deviation equal to the 'scale' input parameter. Your output array has a stddev value of 6.01539689199\n",
+            "description": "Test for center normalized (10 points)"
+        },
+        {
+            "output": {
+                "passfail": "failed"
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_typvinqh/CVResult.py\", line 29, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 245, in test_shiftimageleft\n    \"Correct answer: \\n{}\".format(shift, test_image, student, ref))\nAssertionError: The difference at one pixel value was unexpectedly large. Make sure you handle the border as instructed.\nShift value used: 2\nTest array: \n[[ 48 248 219 222 160 225  89 131 154  60 135  96]\n [221 210 129 111 250  72  27  85  25  41 188 159]\n [249 152 155 159 160 181 145 238 250 147  30  71]\n [ 84 116 169 251  39 119  30  28 190  45 150 251]\n [ 42  48 220 139 172 178  28 240 254  95  99 110]\n [182  71  37 141  74  96 188   7 138 181  51 230]\n [110  30 173 206 151 106 210 202   6   6  93 178]\n [188 151 102 116 251 175 184 140 167  87 248 121]\n [ 33 235 177 231 214 232 171 148 110  11  87  12]\n [252  92 140 140 171  56  23 107 218 200 186 153]]\nStudent's answer: \n[[219 222 160 225  89 131 154  60 135  96 135  96]\n [129 111 250  72  27  85  25  41 188 159 188 159]\n [155 159 160 181 145 238 250 147  30  71  30  71]\n [169 251  39 119  30  28 190  45 150 251 150 251]\n [220 139 172 178  28 240 254  95  99 110  99 110]\n [ 37 141  74  96 188   7 138 181  51 230  51 230]\n [173 206 151 106 210 202   6   6  93 178  93 178]\n [102 116 251 175 184 140 167  87 248 121 248 121]\n [177 231 214 232 171 148 110  11  87  12  87  12]\n [140 140 171  56  23 107 218 200 186 153 186 153]]\nCorrect answer: \n[[219 222 160 225  89 131 154  60 135  96  96  96]\n [129 111 250  72  27  85  25  41 188 159 159 159]\n [155 159 160 181 145 238 250 147  30  71  71  71]\n [169 251  39 119  30  28 190  45 150 251 251 251]\n [220 139 172 178  28 240 254  95  99 110 110 110]\n [ 37 141  74  96 188   7 138 181  51 230 230 230]\n [173 206 151 106 210 202   6   6  93 178 178 178]\n [102 116 251 175 184 140 167  87 248 121 121 121]\n [177 231 214 232 171 148 110  11  87  12  12  12]\n [140 140 171  56  23 107 218 200 186 153 153 153]]\n",
+            "description": "Test for shiftImageLeft (10 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test for copy_paste_middle (10 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test for extractGreen (10 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test for extractRed (10 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test for image_stats max return value (5 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test for image_stats mean return value (5 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test for image_stats min return value (5 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test for image_stats stddev return value (5 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test for swap_green_blue (10 points)"
+        }
+    ],
+    "unauthorized_lib_calls": []
+}

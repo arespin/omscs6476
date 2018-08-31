@@ -1,0 +1,89 @@
+{
+    "tests": [
+        {
+            "output": {
+                "passfail": "failed"
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_qhiaykus/CVResult.py\", line 29, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 274, in test_differenceimage\n    \"Correct answer: \\n{}\".format(student, ref))\nAssertionError: The difference at one pixel value was unexpectedly large. Make sure you subtract the shifted image from the original and not the other way around. Additionally, the pixel values should be normalized and scaled using a min max method so they are in [0, 255]. Finally, make sure you pay special attention to which data type you use when performing arithmetic operations.\nStudent's answer: \n[[  4 182  94 157 248 201 123  39   7   0 128]\n [ 91  83 191  99 105  89  66  55  91 127 128]\n [251  72 136 197  51 204  83  59 116  62 128]\n [128 151 100 187  33 150 176 120 223 145 128]\n [140 174  97 117 178 180 178 144  91 102 128]\n [158 138 102  97 203 170  83 101  31  46 128]\n [ 55 129 132  51 217  81 159 255 131 209 128]\n [140 126 178 115  80 167 126 107 204 154 128]\n [192 182  51  55 104 119 142 165 102  93 128]\n [ 67 194 163 193 190 156  10  72  24  38 128]]\nCorrect answer: \n[[   4.21487603  182.29338843   94.83471074  157.53099174  248.15082645\n   201.78719008  123.28512397   39.51446281    7.90289256    0.\n   128.0268595 ]\n [  91.14669421   83.77066116  191.25         99.57644628  105.37190083\n    89.0392562    66.91115702   55.32024793   91.14669421  127.5\n   128.0268595 ]\n [ 251.31198347   72.17975207  136.98347107  197.04545455   51.1053719\n   204.94834711   83.24380165   59.00826446  116.43595041   62.69628099\n   128.0268595 ]\n [ 128.0268595   151.73553719  100.10330579  187.56198347   33.19214876\n   150.15495868  176.49793388  120.12396694  223.91528926  145.94008264\n   128.0268595 ]\n [ 140.1446281   174.39049587   97.99586777  117.48966942  178.6053719\n   180.71280992  178.6053719   144.35950413   91.14669421  102.2107438\n   128.0268595 ]\n [ 158.58471074  138.03719008  102.2107438    97.46900826  203.3677686\n   170.17561983   83.77066116  101.6838843    31.61157025   46.36363636\n   128.0268595 ]\n [  55.84710744  129.60743802  132.24173554   51.6322314   217.0661157\n    81.13636364  159.63842975  255.          131.18801653  209.69008264\n   128.0268595 ]\n [ 140.6714876   126.9731405   178.0785124   115.90909091   80.60950413\n   167.54132231  126.9731405   107.47933884  204.4214876   154.36983471\n   128.0268595 ]\n [ 192.30371901  182.29338843   51.1053719    55.32024793  104.84504132\n   119.07024793  142.25206612  165.9607438   102.2107438    93.78099174\n   128.0268595 ]\n [  67.43801653  194.41115702  163.32644628  193.35743802  190.19628099\n   156.47727273   10.53719008   72.70661157   24.76239669   38.4607438\n   128.0268595 ]]\n",
+            "description": "Test for difference Image (10 points)"
+        },
+        {
+            "output": {
+                "passfail": "failed"
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_qhiaykus/CVResult.py\", line 29, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 245, in test_shiftimageleft\n    \"Correct answer: \\n{}\".format(shift, test_image, student, ref))\nAssertionError: The difference at one pixel value was unexpectedly large. Make sure you handle the border as instructed.\nShift value used: 3\nTest array: \n[[ 74  65 117  86 180  49 190  48 233  94 173  68  27 241]\n [ 54 144  20 217  84  44  67 190 141  51  43 245 131 194]\n [149 173  51 197  70 118 143  35 127 126   9 133  50  31]\n [176  91  56  94  15 242 247 114  39 164 125  55 205   1]\n [122  19 254 105  72 220  33 139  37  27  39  19  41 154]\n [217  34 236 148  92   4 126 164   5  90 186  28 249  10]\n [117 113  52  44   0 212 219 242  24  33 137  81  68 213]\n [135  37  95 190  16 203  24   1 184  30 115 220  62 125]\n [ 32  98 130 146 148  43 117 171   2 109  11 133  17 188]\n [138 202 233 225 176 185 209 140 131  12 166  16 110   8]\n [132 183 223 181  10 233 183 122 152 103 193 207 167 157]\n [ 87 144  34 100 173 221  90  16  82  24 226  76 115 154]\n [229 215 141  35 177  12 101 147 193  91 111  74 229 161]]\nStudent's answer: \n[[ 86 180  49 190  48 233  94 173  68  27 241  68  27 241]\n [217  84  44  67 190 141  51  43 245 131 194 245 131 194]\n [197  70 118 143  35 127 126   9 133  50  31 133  50  31]\n [ 94  15 242 247 114  39 164 125  55 205   1  55 205   1]\n [105  72 220  33 139  37  27  39  19  41 154  19  41 154]\n [148  92   4 126 164   5  90 186  28 249  10  28 249  10]\n [ 44   0 212 219 242  24  33 137  81  68 213  81  68 213]\n [190  16 203  24   1 184  30 115 220  62 125 220  62 125]\n [146 148  43 117 171   2 109  11 133  17 188 133  17 188]\n [225 176 185 209 140 131  12 166  16 110   8  16 110   8]\n [181  10 233 183 122 152 103 193 207 167 157 207 167 157]\n [100 173 221  90  16  82  24 226  76 115 154  76 115 154]\n [ 35 177  12 101 147 193  91 111  74 229 161  74 229 161]]\nCorrect answer: \n[[ 86 180  49 190  48 233  94 173  68  27 241 241 241 241]\n [217  84  44  67 190 141  51  43 245 131 194 194 194 194]\n [197  70 118 143  35 127 126   9 133  50  31  31  31  31]\n [ 94  15 242 247 114  39 164 125  55 205   1   1   1   1]\n [105  72 220  33 139  37  27  39  19  41 154 154 154 154]\n [148  92   4 126 164   5  90 186  28 249  10  10  10  10]\n [ 44   0 212 219 242  24  33 137  81  68 213 213 213 213]\n [190  16 203  24   1 184  30 115 220  62 125 125 125 125]\n [146 148  43 117 171   2 109  11 133  17 188 188 188 188]\n [225 176 185 209 140 131  12 166  16 110   8   8   8   8]\n [181  10 233 183 122 152 103 193 207 167 157 157 157 157]\n [100 173 221  90  16  82  24 226  76 115 154 154 154 154]\n [ 35 177  12 101 147 193  91 111  74 229 161 161 161 161]]\n",
+            "description": "Test for shiftImageLeft (10 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test for add_noise (10 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test for copy_paste_middle (10 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test for extractGreen (10 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test for extractRed (10 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test for image_stats max return value (5 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test for image_stats mean return value (5 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test for image_stats min return value (5 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test for image_stats stddev return value (5 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test for center normalized (10 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test for swap_green_blue (10 points)"
+        }
+    ],
+    "unauthorized_lib_calls": []
+}

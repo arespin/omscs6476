@@ -1,0 +1,89 @@
+{
+    "tests": [
+        {
+            "output": {
+                "passfail": "failed"
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_zetynaxc/CVResult.py\", line 29, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 285, in test_addnoise\n    student = ps1.add_noise(np.copy(test_image), channel, input_stddev)\n  File \"/home/vmuser_zetynaxc/workspace/ps1.py\", line 272, in add_noise\n    noise=np.random.randn( temp_image.shape )*sigma\n  File \"mtrand.pyx\", line 1404, in mtrand.RandomState.randn (numpy/random/mtrand/mtrand.c:19843)\n  File \"mtrand.pyx\", line 1534, in mtrand.RandomState.standard_normal (numpy/random/mtrand/mtrand.c:20368)\n  File \"mtrand.pyx\", line 167, in mtrand.cont0_array (numpy/random/mtrand/mtrand.c:6127)\nTypeError: 'tuple' object cannot be interpreted as an index\n",
+            "description": "Test for add_noise (10 points)"
+        },
+        {
+            "output": {
+                "passfail": "failed"
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_zetynaxc/CVResult.py\", line 29, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 274, in test_differenceimage\n    \"Correct answer: \\n{}\".format(student, ref))\nAssertionError: The difference at one pixel value was unexpectedly large. Make sure you subtract the shifted image from the original and not the other way around. Additionally, the pixel values should be normalized and scaled using a min max method so they are in [0, 255]. Finally, make sure you pay special attention to which data type you use when performing arithmetic operations.\nStudent's answer: \n[[114 158  50 228   0 255  83  39 229  64 116 125]\n [142  51 140 113 140 179  26 197 160  85 109 125]\n [ 97  76 146 142  93 173 147  83 102 130 188 125]\n [183 123 141  37 233 134  47 142 160  61 197 125]\n [125 149 110  33 195 155  19 202  56 194 148 125]\n [183 108  46 156 201  70  98 180  38 156 132 125]\n [102 175  84 110 139 172 149  92 125  75 202 125]\n [167  72  74 241 120  50 167  49 168 158  96 125]\n [ 38 182  96 164  59 199  62  92 249 116 106 125]\n [ 69 139 168  39 158  91 228  42 131 125 162 125]\n [ 80 138 158  40 164 168  66 189  10 185 117 125]\n [110 199 101  98 196  72  83 131 154  91 230 125]]\nCorrect answer: \n[[ 114.07894737  158.47165992   50.58704453  228.15789474    0.          255.\n    83.62348178   39.23076923  229.1902834    64.5242915   116.65991903\n   125.951417  ]\n [ 142.46963563   51.6194332   140.4048583   113.56275304  140.4048583\n   179.63562753   26.84210526  197.18623482  160.53643725   85.17206478\n   109.94939271  125.951417  ]\n [  97.04453441   76.39676113  146.59919028  142.46963563   93.43117409\n   173.95748988  147.63157895   83.10728745  102.20647773  130.08097166\n   188.92712551  125.951417  ]\n [ 183.76518219  123.37044534  141.9534413    37.1659919   233.83603239\n   134.21052632   47.48987854  142.46963563  160.02024291   61.42712551\n   197.70242915  125.951417  ]\n [ 125.43522267  149.69635628  110.98178138   33.55263158  195.63765182\n   155.37449393   19.61538462  202.86437247   56.26518219  194.60526316\n   148.14777328  125.951417  ]\n [ 183.76518219  108.91700405   46.97368421  156.40688259  201.31578947\n    70.20242915   98.59311741  180.66801619   38.19838057  156.40688259\n   132.66194332  125.951417  ]\n [ 102.20647773  175.50607287   84.65587045  110.46558704  139.88866397\n   172.92510121  149.18016194   92.91497976  125.951417     75.8805668\n   202.34817814  125.951417  ]\n [ 167.24696356   72.78340081   74.33198381  241.57894737  120.78947368\n    50.58704453  167.76315789   49.03846154  168.27935223  158.47165992\n    96.52834008  125.951417  ]\n [  38.7145749   182.73279352   96.01214575  164.14979757   59.87854251\n   199.76720648   62.45951417   92.39878543  249.32186235  116.1437247\n   106.85222672  125.951417  ]\n [  69.68623482  139.37246964  168.27935223   39.23076923  158.98785425\n    91.36639676  228.67408907   42.32793522  131.11336032  125.951417\n   162.60121457  125.951417  ]\n [  80.52631579  138.34008097  158.98785425   40.26315789  164.14979757\n   168.79554656   66.58906883  189.95951417   10.32388664  185.31376518\n   117.17611336  125.951417  ]\n [ 110.98178138  199.25101215  101.17408907   98.07692308  196.67004049\n    72.78340081   83.10728745  131.62955466  154.8582996    91.88259109\n   230.22267206  125.951417  ]]\n",
+            "description": "Test for difference Image (10 points)"
+        },
+        {
+            "output": {
+                "passfail": "failed"
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_zetynaxc/CVResult.py\", line 29, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 220, in test_normalized\n    \"array has a stddev value of {}\".format(scale, stddev))\nAssertionError: The difference in at least one pixel value was unexpectedly large. \nMake sure your function can work with 'scale' values different than 10. This test used a 'scale' value of 5. The output array must have a standard deviation equal to the 'scale' input parameter. Your output array has a stddev value of 5.01071696539\n",
+            "description": "Test for center normalized (10 points)"
+        },
+        {
+            "output": {
+                "passfail": "failed"
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_zetynaxc/CVResult.py\", line 29, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 245, in test_shiftimageleft\n    \"Correct answer: \\n{}\".format(shift, test_image, student, ref))\nAssertionError: The difference at one pixel value was unexpectedly large. Make sure you handle the border as instructed.\nShift value used: 3\nTest array: \n[[123 133 107 199  55 151  63 130 151  79 243  34 214]\n [161 185 141  50 253 191 238 101  13  18  69 244 143]\n [166 191 139  68  70 215 166  82  46  97  26  93 161]\n [186  64 111  68 137  52 199 113 146 171 191 115 247]\n [240 104  40  35  63   0  25 198 175 187 210  90 193]\n [129 139 209 209  42 232  20  82 143  89 131  47  69]\n [173 230  59 232 226  27 147 176  13 160  41 124  89]\n [147  11  75  31  55  49 155 197 216  72 242  66 175]\n [221 107   3 106 108  92 151 173 135 151 132  62  68]\n [157 231  98 212 115  45 126  76 121 248 170  98 211]\n [202  90  21 244 119 162  82  26 138   4 108 154 194]\n [122 219 231  83  90  98 127  82  60  50  43 225 210]\n [211 115 113 226 173  22 221 151 116  76 169   1  94]\n [246  43 172 215 251  31 106 246  15  11 197 229 165]]\nStudent's answer: \n[[199  55 151  63 130 151  79 243  34 214 243  34 214]\n [ 50 253 191 238 101  13  18  69 244 143  69 244 143]\n [ 68  70 215 166  82  46  97  26  93 161  26  93 161]\n [ 68 137  52 199 113 146 171 191 115 247 191 115 247]\n [ 35  63   0  25 198 175 187 210  90 193 210  90 193]\n [209  42 232  20  82 143  89 131  47  69 131  47  69]\n [232 226  27 147 176  13 160  41 124  89  41 124  89]\n [ 31  55  49 155 197 216  72 242  66 175 242  66 175]\n [106 108  92 151 173 135 151 132  62  68 132  62  68]\n [212 115  45 126  76 121 248 170  98 211 170  98 211]\n [244 119 162  82  26 138   4 108 154 194 108 154 194]\n [ 83  90  98 127  82  60  50  43 225 210  43 225 210]\n [226 173  22 221 151 116  76 169   1  94 169   1  94]\n [215 251  31 106 246  15  11 197 229 165 197 229 165]]\nCorrect answer: \n[[199  55 151  63 130 151  79 243  34 214 214 214 214]\n [ 50 253 191 238 101  13  18  69 244 143 143 143 143]\n [ 68  70 215 166  82  46  97  26  93 161 161 161 161]\n [ 68 137  52 199 113 146 171 191 115 247 247 247 247]\n [ 35  63   0  25 198 175 187 210  90 193 193 193 193]\n [209  42 232  20  82 143  89 131  47  69  69  69  69]\n [232 226  27 147 176  13 160  41 124  89  89  89  89]\n [ 31  55  49 155 197 216  72 242  66 175 175 175 175]\n [106 108  92 151 173 135 151 132  62  68  68  68  68]\n [212 115  45 126  76 121 248 170  98 211 211 211 211]\n [244 119 162  82  26 138   4 108 154 194 194 194 194]\n [ 83  90  98 127  82  60  50  43 225 210 210 210 210]\n [226 173  22 221 151 116  76 169   1  94  94  94  94]\n [215 251  31 106 246  15  11 197 229 165 165 165 165]]\n",
+            "description": "Test for shiftImageLeft (10 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test for copy_paste_middle (10 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test for extractGreen (10 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test for extractRed (10 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test for image_stats max return value (5 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test for image_stats mean return value (5 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test for image_stats min return value (5 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test for image_stats stddev return value (5 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test for swap_green_blue (10 points)"
+        }
+    ],
+    "unauthorized_lib_calls": []
+}
