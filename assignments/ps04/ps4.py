@@ -173,8 +173,7 @@ def reduce_image(image):
     return img_out
 
 def kernel():
-    return np.array([1,4,6,4,1])*(1/16.)
-
+    return np.array([1, 4, 6, 4, 1])/16.
 
 def gaussian_pyramid(image, levels):
     """Creates a Gaussian pyramid of a given image.
@@ -200,7 +199,6 @@ def gaussian_pyramid(image, levels):
     gpyr = []
     img = image.copy()
     for i in range(levels):
-        img = normalize_and_scale(img, scale_range=(0, 255))
         gpyr.append(img)
         img = reduce_image(img)
 
@@ -232,7 +230,7 @@ def create_combined_img(img_list):
     x_from = 0
     for img in img_list:
         hi, wi   = img.shape
-        template[0:hi, x_from:(x_from+wi)] = img 
+        template[0:hi, x_from:(x_from+wi)] = normalize_and_scale(img, scale_range=(0, 255))
         x_from += wi
     
     show = False
@@ -263,7 +261,7 @@ def expand_image(image):
         numpy.array: same type as 'image' with the doubled height and
                      width.
     """
-    
+        
     h, w = image.shape
     template = np.zeros((h * 2, w * 2))
     template[::2,::2] = image.copy()
@@ -291,9 +289,6 @@ def laplacian_pyramid(g_pyr):
         img  = g_pyr[i] - expand_image(g_pyr[i + 1])[:h, :w]
         lpyr.append(img)
     lpyr.append(g_pyr[-1])
-    
-    lpyr = [normalize_and_scale(i, scale_range=(0, 255)) for i in lpyr]
-
 
     return lpyr
 
@@ -322,13 +317,16 @@ def warp(image, U, V, interpolation, border_mode):
                      warped[y, x] = image[y + V[y, x], x + U[y, x]]
     """
     # image, U, V = yos_img_02, u, v
-    h, w = image.shape
-    X, Y = [m.astype(np.float32) for m in np.meshgrid(range(h), range(w), indexing='ij')]
-    X    += V.astype(np.float32)[:h, :w]
-    Y    += U.astype(np.float32)[:h, :w]
     
-    return cv2.remap(src=image,map1=X, map2=Y, interpolation=interpolation, borderMode=border_mode)
-
+    h, w = image.shape
+    
+    X, Y = [i.astype('float32') for i in np.meshgrid(range(h), range(w), sparse=False, indexing='ij')]
+    
+    X += V[:h, :w]
+    Y += U[:h, :w]
+    
+    return cv2.remap(image, Y, X, interpolation=interpolation, borderMode=border_mode)
+    
 
 def hierarchical_lk(img_a, img_b, levels, k_size, k_type, sigma, interpolation,
                     border_mode):

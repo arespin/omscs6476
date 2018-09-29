@@ -204,18 +204,14 @@ def part_3a_1():
             
     #print yos_img_01.shape
     #print yos_img_02.shape
-    levels   = 1  # Define the number of pyramid levels
+    levels   = 5  # Define the number of pyramid levels
     yos_img_01_g_pyr = ps4.gaussian_pyramid(yos_img_01, levels)
     yos_img_02_g_pyr = ps4.gaussian_pyramid(yos_img_02, levels)
-    for i in yos_img_02_g_pyr:
-        print i.shape
-    for i in yos_img_02_g_pyr:
-        print i.shape
 
     level_id = 0  # TODO: Select the level number (or id) you wish to use
-    k_size   = 15  # TODO: Select a kernel size
-    k_type   = "uniform"  # TODO: Select a kernel type
-    sigma    = 0  # TODO: Select a sigma value if you are using a gaussian kernel
+    k_size   = 0  # TODO: Select a kernel size
+    k_type   = "gaussian"  # TODO: Select a kernel type
+    sigma    = 20  # TODO: Select a sigma value if you are using a gaussian kernel
     u, v = ps4.optic_flow_lk(yos_img_01_g_pyr[level_id],
                              yos_img_02_g_pyr[level_id],
                              k_size, k_type, sigma)
@@ -237,14 +233,14 @@ def part_3a_2():
     yos_img_03 = cv2.imread(
         os.path.join(input_dir, 'DataSeq1', 'yos_img_03.jpg'), 0) / 255.
 
-    levels = 1  # Define the number of pyramid levels
+    levels   = 5  # Define the number of pyramid levels
     yos_img_02_g_pyr = ps4.gaussian_pyramid(yos_img_02, levels)
     yos_img_03_g_pyr = ps4.gaussian_pyramid(yos_img_03, levels)
 
     level_id = 0  # TODO: Select the level number (or id) you wish to use
-    k_size = 0  # TODO: Select a kernel size
-    k_type = ""  # TODO: Select a kernel type
-    sigma = 0  # TODO: Select a sigma value if you are using a gaussian kernel
+    k_size   = 0  # TODO: Select a kernel size
+    k_type   = "gaussian"  # TODO: Select a kernel type
+    sigma    = 20  # TODO: Select a sigma value if you are using a gaussian kernel
     u, v = ps4.optic_flow_lk(yos_img_02_g_pyr[level_id],
                              yos_img_03_g_pyr[level_id],
                              k_size, k_type, sigma)

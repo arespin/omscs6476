@@ -134,6 +134,7 @@ class Part2(unittest.TestCase):
 
             for l in range(len(g_pyr)):
                 correct = np.allclose(g_pyr[l], g_pyr_ref[l], atol=0.1)
+                #correct = True
 
                 error_msg = "Value at level {} does not match the answer." \
                             "".format(l)
@@ -205,6 +206,7 @@ class Part3(unittest.TestCase):
 
             center_box_average = np.mean(warped[r:3 * r, c:3 * c])
             correct_center_box = abs(center_box_average - box_value) <= 0.51
+            #print(center_box_average, box_value)
 
             error_msg = "Center box average pixel value is greater than the " \
                         "value used in the input image."
