@@ -266,13 +266,13 @@ def part_4a():
     shift_r40 = cv2.imread(os.path.join(input_dir, 'TestSeq',
                                         'ShiftR40.png'), 0) / 255.
 
-    levels = 1  # TODO: Define the number of levels
-    k_size = 0  # TODO: Select a kernel size
-    k_type = ""  # TODO: Select a kernel type
-    sigma = 0  # TODO: Select a sigma value if you are using a gaussian kernel
+    levels = 6  # TODO: Define the number of levels
+    k_size = 60  # TODO: Select a kernel size
+    k_type = "uniform"  # TODO: Select a kernel type
+    sigma  = 0  # TODO: Select a sigma value if you are using a gaussian kernel
     interpolation = cv2.INTER_CUBIC  # You may try different values
     border_mode = cv2.BORDER_REFLECT101  # You may try different values
-
+    
     u10, v10 = ps4.hierarchical_lk(shift_0, shift_r10, levels, k_size, k_type,
                                    sigma, interpolation, border_mode)
 
@@ -281,15 +281,25 @@ def part_4a():
 
     # You may want to try different parameters for the remaining function
     # calls.
+    levels = 5  # TODO: Define the number of levels
+    k_size = 20  # TODO: Select a kernel size
+    k_type = "gaussian"  # TODO: Select a kernel type
+    sigma  = 10 # TODO: Select a sigma value if you are using a gaussian kernel
     u20, v20 = ps4.hierarchical_lk(shift_0, shift_r20, levels, k_size, k_type,
                                    sigma, interpolation, border_mode)
-
-    u_v = quiver(u20, v20, scale=3, stride=10)
+    #print shift_0
+    #print u20
+    #print 50*'--'
+    u_v = quiver(u20, v20, scale=3, stride=30)
     cv2.imwrite(os.path.join(output_dir, "ps4-4-a-2.png"), u_v)
-
+    
+    levels = 5  # TODO: Define the number of levels
+    k_size = 40  # TODO: Select a kernel size
+    k_type = "gaussian"  # TODO: Select a kernel type
+    sigma  = 30 # TODO: Select a sigma value if you are using a gaussian kernel
     u40, v40 = ps4.hierarchical_lk(shift_0, shift_r40, levels, k_size, k_type,
                                    sigma, interpolation, border_mode)
-    u_v = quiver(u40, v40, scale=3, stride=10)
+    u_v = quiver(u40, v40, scale=3, stride=30)
     cv2.imwrite(os.path.join(output_dir, "ps4-4-a-3.png"), u_v)
 
 
@@ -299,17 +309,16 @@ def part_4b():
     urban_img_02 = cv2.imread(
         os.path.join(input_dir, 'Urban2', 'urban02.png'), 0) / 255.
 
-    levels = 1  # TODO: Define the number of levels
-    k_size = 0  # TODO: Select a kernel size
-    k_type = ""  # TODO: Select a kernel type
-    sigma = 0  # TODO: Select a sigma value if you are using a gaussian kernel
+    levels = 5  # TODO: Define the number of levels
+    k_size = 40  # TODO: Select a kernel size
+    k_type = "gaussian"  # TODO: Select a kernel type
+    sigma  = 20  # TODO: Select a sigma value if you are using a gaussian kernel
     interpolation = cv2.INTER_CUBIC  # You may try different values
     border_mode = cv2.BORDER_REFLECT101  # You may try different values
-
     u, v = ps4.hierarchical_lk(urban_img_01, urban_img_02, levels, k_size,
                                k_type, sigma, interpolation, border_mode)
 
-    u_v = quiver(u, v, scale=3, stride=10)
+    u_v = quiver(u, v, scale=9, stride=30)
     cv2.imwrite(os.path.join(output_dir, "ps4-4-b-1.png"), u_v)
 
     interpolation = cv2.INTER_CUBIC  # You may try different values
@@ -321,6 +330,27 @@ def part_4b():
     cv2.imwrite(os.path.join(output_dir, "ps4-4-b-2.png"),
                 ps4.normalize_and_scale(diff_img))
 
+def interpolate(img0, img1, levels, k_size, 
+                               k_type, sigma, interpolation, border_mode):
+    # Hierarchical Lucas-Kanade method forward and backward direction
+    ufwd, vfwd = ps4.hierarchical_lk(img0, img1, levels, k_size, 
+                               k_type, sigma, interpolation, border_mode)
+    ubwd, vbwd = ps4.hierarchical_lk(img1, img0, levels, k_size, 
+                               k_type, sigma, interpolation, border_mode)
+    
+    # Save the flows, including the first which is raw image
+    #flowls = [ps4.warp(img0, -0.2*i*u, -0.2*i*v, interpolation, border_mode) for i in range(0,5)]
+    flowlsfwd = [img0]
+    flowlsbwd = [img1]
+    for i in range(1,3):
+        flowlsfwd.append(ps4.warp(flowlsfwd[-1], -0.2*ufwd, -0.2*vfwd, interpolation, border_mode))
+        flowlsbwd.append(ps4.warp(flowlsbwd[-1], -0.2*ubwd, -0.2*vbwd, interpolation, border_mode))
+
+    #print(flowlsfwd[0].shape, flowlsbwd[0].shape)
+    # Stack the image frames
+    frames = np.vstack((np.hstack(flowlsfwd),np.hstack(flowlsbwd[::-1])))
+    
+    return frames
 
 def part_5a():
     """Frame interpolation
@@ -330,7 +360,25 @@ def part_5a():
     Place all your work in this file and this section.
     """
 
-    raise NotImplementedError
+    
+    shift_0 = cv2.imread(os.path.join(input_dir, 'TestSeq',
+                                      'Shift0.png'), 0) / 255.
+    shift_r10 = cv2.imread(os.path.join(input_dir, 'TestSeq',
+                                        'ShiftR10.png'), 0) / 255.
+
+    levels = 6  # TODO: Define the number of levels
+    k_size = 60  # TODO: Select a kernel size
+    k_type = "uniform"  # TODO: Select a kernel type
+    sigma  = 0  # TODO: Select a sigma value if you are using a gaussian kernel
+    interpolation = cv2.INTER_CUBIC  # You may try different values
+    border_mode = cv2.BORDER_REFLECT101  # You may try different values
+    
+    # get the frames
+    frames = interpolate(shift_0, shift_r10, levels, k_size, 
+                               k_type, sigma, interpolation, border_mode)
+    # Write out
+    cv2.imwrite(os.path.join(output_dir, "ps4-5-a-1.png"),
+                ps4.normalize_and_scale(frames))
 
 
 def part_5b():
@@ -340,9 +388,71 @@ def part_5b():
 
     Place all your work in this file and this section.
     """
+    mc01 = cv2.imread(os.path.join(input_dir, 'MiniCooper', 'mc01.png'), 0) / 255.
+    mc02 = cv2.imread(os.path.join(input_dir, 'MiniCooper', 'mc02.png'), 0) / 255.
+    mc03 = cv2.imread(os.path.join(input_dir, 'MiniCooper', 'mc03.png'), 0) / 255.
+    
+    levels = 8  # TODO: Define the number of levels
+    k_size = 20  # TODO: Select a kernel size
+    k_type = "gaussian"  # TODO: Select a kernel type
+    sigma  = 6  # TODO: Select a sigma value if you are using a gaussian kernel
+    interpolation = cv2.INTER_CUBIC  # You may try different values
+    border_mode = cv2.BORDER_REFLECT101  # You may try different values
+    
+    # get the frames part b1
+    frames = interpolate(mc01, mc02, levels, k_size, 
+                               k_type, sigma, interpolation, border_mode)
+    cv2.imwrite(os.path.join(output_dir, "ps4-5-b-1.png"),
+                ps4.normalize_and_scale(frames))
+    
+    # get the frames part b2
+    frames = interpolate(mc02, mc03, levels, k_size, 
+                               k_type, sigma, interpolation, border_mode)
+    cv2.imwrite(os.path.join(output_dir, "ps4-5-b-2.png"),
+                ps4.normalize_and_scale(frames))
+    
+def video_frame_generator(filename):
+    """A generator function that returns a frame on each 'next()' call.
 
-    raise NotImplementedError
+    Will return 'None' when there are no frames left.
 
+    Args:
+        filename (string): Filename.
+
+    Returns:
+        None.
+    """
+    vid = cv2.VideoCapture(filename)
+
+    # Do not edit this while loop
+    while vid.isOpened():
+        ret, frame = vid.read()
+
+        if ret:
+            yield frame
+        else:
+            break
+
+    # Todo: Close video (release) and yield a 'None' value. (add 2 lines)
+    vid.release()
+    yield None
+
+def mp4_video_writer(filename, frame_size, fps=20):
+    """Opens and returns a video for writing.
+
+    Use the VideoWriter's `write` method to save images.
+    Remember to 'release' when finished.
+
+    Args:
+        filename (string): Filename for saved video
+        frame_size (tuple): Width, height tuple of output video
+        fps (int): Frames per second
+    Returns:
+        VideoWriter: Instance of VideoWriter ready for writing
+    """
+    fourcc = cv2.cv.CV_FOURCC(*'MP4V')
+    filename = filename.replace('.mp4', '.avi')
+    return cv2.VideoWriter(filename, fourcc, fps, frame_size)
 
 def part_6():
     """Challenge Problem
@@ -351,8 +461,57 @@ def part_6():
 
     Place all your work in this file and this section.
     """
+    skip   = 2
+    video1 = 'input_videos/racecar.mp4'
+    print video1
 
-    raise NotImplementedError
+    image_gen1 = video_frame_generator(video1)
+    image1 = image_gen1.next()
+    for _ in range(skip):
+        image2 = image_gen1.next()
+
+    h1, w1 = image1.shape[:2]
+
+    frame_num = 1
+    out_path = "output/optic_flow_racecar.mp4"
+    video_out = mp4_video_writer(out_path, (w1, h1), fps = 20)
+
+    frame_ct = 0
+    while (image2 is not None) and (frame_ct <300):
+        frame_ct += 1
+        print "Processing frame {}".format(frame_num)
+        
+        levels = 5  # TODO: Define the number of levels
+        k_size = 50  # TODO: Select a kernel size
+        k_type = "gaussian"  # TODO: Select a kernel type
+        sigma  = 20 # TODO: Select a sigma value if you are using a gaussian kernel
+        interpolation = cv2.INTER_CUBIC  # You may try different values
+        border_mode = cv2.BORDER_REFLECT101  # You may try different values
+    
+        image1bw = cv2.cvtColor(image1, cv2.COLOR_BGR2GRAY)
+        image2bw = cv2.cvtColor(image2, cv2.COLOR_BGR2GRAY)
+        image1bw = ps4.normalize_and_scale(image1bw*1.,  scale_range=(0, 1))
+        image2bw = ps4.normalize_and_scale(image2bw*1.,  scale_range=(0, 1))
+        
+        u20, v20 = ps4.hierarchical_lk(image1bw, image2bw, levels, k_size, k_type,
+                                       sigma, interpolation, border_mode)
+        u_v = quiver(u20, v20, scale=3, stride=20)
+        
+        image_out = image1.copy()
+        image_out[np.where(u_v>10)] = 255
+        if frame_ct==30:
+            cv2.imwrite(os.path.join(output_dir, "ps4-6-a-1.png"), image_out)
+        if frame_ct==200:
+            cv2.imwrite(os.path.join(output_dir, "ps4-6-a-2.png"), image_out)
+        
+        video_out.write(image_out)
+        image1 = image2.copy()
+        for _ in range(skip):
+            image2 = image_gen1.next()
+
+        frame_num += 1
+
+    video_out.release()
 
 
 if __name__ == "__main__":

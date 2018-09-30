@@ -320,7 +320,7 @@ def warp(image, U, V, interpolation, border_mode):
     
     h, w = image.shape
     
-    X, Y = [i.astype('float32') for i in np.meshgrid(range(h), range(w), sparse=False, indexing='ij')]
+    X, Y = [i.astype('float32') for i in np.meshgrid(range(h), range(w), indexing='ij')]
     
     X += V[:h, :w]
     Y += U[:h, :w]
@@ -355,5 +355,30 @@ def hierarchical_lk(img_a, img_b, levels, k_size, k_type, sigma, interpolation,
             V (numpy.array): raw displacement (in pixels) along Y-axis,
                              same size and type as U.
     """
+    
+    # img_a, img_b = shift_0, shift_r10
+    gpyr_a = gaussian_pyramid(img_a, levels)[::-1]
+    gpyr_b = gaussian_pyramid(img_b, levels)[::-1]
+    
+    U, V = np.zeros(gpyr_a[0].shape), np.zeros(gpyr_b[0].shape)
+    
+    for t, (a, b) in enumerate(zip(gpyr_a, gpyr_b)):
+        
+        if t==0:
+            warped = gpyr_b[0]
+        else:
+            warped = warp(b, U, V, interpolation, border_mode)
+            
+        ui, vi = optic_flow_lk(a, warped, k_size, k_type, sigma)
 
-    raise NotImplementedError
+        h, w = ui.shape
+        U = U[:h, :w] + ui
+
+        h, w = vi.shape
+        V = V[:h, :w] + vi
+        
+        if (t+1)<levels:
+            U, V = 2. * expand_image(U), 2. * expand_image(V)
+        
+    
+    return U, V

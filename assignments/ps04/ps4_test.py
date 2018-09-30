@@ -271,6 +271,7 @@ class Part4(unittest.TestCase):
 
             max_diff = abs(d_c) * .1 + .2
             check_u = abs(u_mean - d_c) < max_diff
+            print u_mean, d_c
 
             error_msg = "Average of U values in the area where there is " \
                         "movement is greater than the allowed amount."
