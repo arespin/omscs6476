@@ -1,0 +1,40 @@
+{
+    "tests": [
+        {
+            "output": {
+                "passfail": "failed"
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_gdaquvkl/CVResult.py\", line 29, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 297, in test_appearance_particle_filter\n    alpha=alpha)\n  File \"run.py\", line 131, in check_center\n    actual_center, max_distance, kwargs))\nAssertionError: Test failed at frame: 168 / 400. \nEstimated center is too far from the actual center. \nStudent's center: [370.96096712132822, 493.33641392822716] \nActual center: [384, 419] \nMax euclidean distance allowed: 75.0 \nParameters used: {'num_particles': 400, 'sigma_mse': 10.0, 'sigma_dyn': 20.0, 'alpha': 0.05}\n",
+            "description": "Test Appearance Particle Filter (20 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test base Kalman filter (20 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test base Kalman filter with measurement NOISE_1 (20 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test base Kalman filter with measurement NOISE_2 (20 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test base particle_filter (20 points)"
+        }
+    ],
+    "unauthorized_lib_calls": []
+}

@@ -1,0 +1,61 @@
+{
+    "tests": [
+        {
+            "output": {
+                "passfail": "failed"
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_cjzmiaxu/CVResult.py\", line 29, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 120, in test_split_dataset\n    self.check_ndarray(x_train, 2, shape=(n_rows, n_cols))\n  File \"/home/vmuser_cjzmiaxu/verify_student_output.py\", line 140, in check_ndarray\n    \"{}\".format(shape, output_shape, msg))\nAssertionError: Output must be an array with shape (3, 9). Your function returned an array with shape (5, 9). \n",
+            "description": "Testing split_dataset (10 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Testing average face (10 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Testing pca eigenvalues (15 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Testing Boosting.evaluate (10 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Testing Boosting.predict (10 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Testing HaarFeature.evaluate (25 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Testing convert_images_to_integral_images (10 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Testing HaarFeature.preview (10 points)"
+        }
+    ],
+    "unauthorized_lib_calls": []
+}

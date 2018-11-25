@@ -1,0 +1,40 @@
+{
+    "tests": [
+        {
+            "output": {
+                "passfail": "failed"
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_krsqfumz/CVResult.py\", line 29, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 297, in test_appearance_particle_filter\n    alpha=alpha)\n  File \"run.py\", line 131, in check_center\n    actual_center, max_distance, kwargs))\nAssertionError: Test failed at frame: 364 / 400. \nEstimated center is too far from the actual center. \nStudent's center: [346.56491927466493, 5.7680928111798524] \nActual center: [340, 82] \nMax euclidean distance allowed: 75.0 \nParameters used: {'num_particles': 400, 'sigma_mse': 10.0, 'sigma_dyn': 20.0, 'alpha': 0.05}\n",
+            "description": "Test Appearance Particle Filter (20 points)"
+        },
+        {
+            "output": {
+                "passfail": "failed"
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_krsqfumz/CVResult.py\", line 29, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 245, in test_particle_filter\n    num_particles=num_particles, sigma_mse=sigma_mse, sigma_dyn=sigma_dyn)\n  File \"run.py\", line 131, in check_center\n    actual_center, max_distance, kwargs))\nAssertionError: Test failed at frame: 11 / 400. \nEstimated center is too far from the actual center. \nStudent's center: [240.58338608974745, 136.52632163435996] \nActual center: [176, 96] \nMax euclidean distance allowed: 37.5 \nParameters used: {'num_particles': 100, 'sigma_mse': 10.0, 'sigma_dyn': 10.0}\n",
+            "description": "Test base particle_filter (20 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test base Kalman filter (20 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test base Kalman filter with measurement NOISE_1 (20 points)"
+        },
+        {
+            "output": {
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Test base Kalman filter with measurement NOISE_2 (20 points)"
+        }
+    ],
+    "unauthorized_lib_calls": []
+}
