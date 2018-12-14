@@ -1,2 +1,2 @@
 # omscs6476
-OMSCS Computer Vision
+OMSCS Computer Vision assignments
